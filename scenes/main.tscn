@@ -1,0 +1,151 @@
+[gd_scene load_steps=20 format=3 uid="uid://0v3qshmpxotv"]
+
+[ext_resource type="Texture2D" uid="uid://b2pp2lir5jhbm" path="res://assets/characters/pg_sprites.png" id="1_0xkei"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_867j8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2fno"]
+height = 52.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qct0"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhn8k"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh0iw"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8jwy"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(2432, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dffj5"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(2560, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hqqm"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(2688, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvim3"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nphh"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veoyy"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_monpb"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io3oa"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ujcx"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr6dp"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvdyn"]
+atlas = ExtResource("1_0xkei")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qg0c7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qct0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhn8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh0iw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8jwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dffj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hqqm")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvim3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nphh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veoyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_monpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io3oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ujcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr6dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvdyn")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yun5a"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_867j8")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -187)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_n2fno")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_qg0c7")
+animation = &"jump"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 313)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_yun5a")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_right = 1145.0
+offset_bottom = 40.0
